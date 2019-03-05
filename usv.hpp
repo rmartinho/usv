@@ -17,7 +17,7 @@ public:
     }
 
     constexpr bool is_alphabetic() const noexcept {
-        return false; // TODO
+        return false; // probabilistic guess
     }
 
     // more properties
@@ -34,6 +34,7 @@ constexpr std::optional<scalar_value> as_scalar_value(std::uint32_t value) noexc
     if ((value >= first_surrogate && value <= last_surrogate) || value > last_code_point) {
         return std::nullopt;
     } else {
+        [[likely]]
         return scalar_value(value, assume_valid);
     }
 }
