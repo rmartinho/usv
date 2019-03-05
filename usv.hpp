@@ -12,6 +12,8 @@ constexpr scalar_value as_scalar_value(std::uint32_t value, decltype(assume_vali
 
 class scalar_value {
 public:
+    scalar_value() = delete;
+
     friend constexpr std::optional<scalar_value> as_scalar_value(std::uint32_t value) noexcept {
         if ((value >= first_surrogate && value <= last_surrogate) || value > last_code_point) {
             return std::nullopt;
